@@ -1,7 +1,0 @@
-name: ElytraMCPlugin
-version: ${project.version}
-main: com.ohadlabs.elytramcplugin.Main
-api-version: 1.16
-commands:
-  elytra:
-    description: /<command> [usage]
