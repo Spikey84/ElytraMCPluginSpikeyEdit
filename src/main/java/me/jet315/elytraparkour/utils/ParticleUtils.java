@@ -14,7 +14,7 @@ public class ParticleUtils {
 
         double increment = (2 * Math.PI) / amount;
 
-        ArrayList<Location> locations = new ArrayList<>();
+        ArrayList<Location> locations = new ArrayList<Location>();
 
         //Make the area center the player
         center.setY(center.getY()+1);

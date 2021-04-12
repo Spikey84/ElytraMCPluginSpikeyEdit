@@ -19,11 +19,11 @@ public class ElytraManager {
     /**
      * Stores mapID and the ElytraMap Object
      */
-    private HashMap<String,ElytraMap> activeMaps = new HashMap<>();
+    private HashMap<String,ElytraMap> activeMaps = new HashMap<String,ElytraMap>();
     /**
      * Stores the Player object and the ElytraPlayer Object
      */
-    private HashMap<Player,ElytraPlayer> elytraPlayers = new HashMap<>();
+    private HashMap<Player,ElytraPlayer> elytraPlayers = new HashMap<Player,ElytraPlayer>();
 
     private Core instance;
 
@@ -50,7 +50,7 @@ public class ElytraManager {
                 elytraMap.setSpawnLocation(Utils.locationFromString(location));
             }
 
-            ArrayList<Ring> ringArrayList = new ArrayList<>();
+            ArrayList<Ring> ringArrayList = new ArrayList<Ring>();
 
             for(String ringAsString : dataFile.getStringList("Maps." + map + ".ringLocations")){
                 Ring ring = Utils.ringFromConfig(ringAsString);

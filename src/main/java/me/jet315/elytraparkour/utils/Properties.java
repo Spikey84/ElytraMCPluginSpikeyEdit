@@ -46,11 +46,11 @@ public class Properties extends DataFile{
     private String messageToSendWhenReachLastRing = "Fini!";
 
     private boolean teleportToMapSpawnIfStopsGliding = true;
-    private String stopGlidingMessage = "Keep moving!";
+    private String stopGlidingMessage = "";
 
-    private String noPermissions = "No perms!";
+    private String noPermissions = "";
 
-    private String firstRingMessage = "First ring!";
+    private String firstRingMessage = "";
 
     public Properties(Core instance){
         super(instance);
@@ -60,7 +60,7 @@ public class Properties extends DataFile{
     private void loadProperties(){
         pluginsPrefix = ChatColor.translateAlternateColorCodes('&',config.getString("PluginsPrefix"));
 
-        firstRingParticles = Particle.valueOf(config.getString("FirstRingParticles"));
+        /*firstRingParticles = Particle.valueOf(config.getString("FirstRingParticles"));
         defaultRingParticles = Particle.valueOf(config.getString("DefaultRingParticles"));
         lastRingParticles = Particle.valueOf(config.getString("LastRingParticles"));
         testingRingParticle = Particle.valueOf(config.getString("TestingRingParticle"));
@@ -92,7 +92,7 @@ public class Properties extends DataFile{
 
         noPermissions = ChatColor.translateAlternateColorCodes('&',config.getString("NoPermissions"));
 
-        firstRingMessage = ChatColor.translateAlternateColorCodes('&',config.getString("FirstRingMessage"));
+        firstRingMessage = ChatColor.translateAlternateColorCodes('&',config.getString("FirstRingMessage"));*/
 
     }
 

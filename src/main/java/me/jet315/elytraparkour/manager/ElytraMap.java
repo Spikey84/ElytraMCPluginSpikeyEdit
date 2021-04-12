@@ -14,7 +14,7 @@ public class ElytraMap {
     /**
      * Stores the rings around the map, i
      */
-    private HashMap<Integer,Ring> mapRings = new HashMap<>();
+    private HashMap<Integer,Ring> mapRings = new HashMap<Integer,Ring>();
 
     /**
      * Stores starting/ending ring points

@@ -3,6 +3,7 @@ package me.jet315.elytraparkour.commands;
 import me.jet315.elytraparkour.Core;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.scoreboard.Objective;
 
 public class CreateMap extends CommandExecutor {
 
@@ -21,6 +22,9 @@ public class CreateMap extends CommandExecutor {
         if(Core.getInstance().getElytraManager().createArena(mapName)){
             sender.sendMessage(Core.getInstance().getProperties().getPluginsPrefix() + ChatColor.GREEN + "A map called "+ mapName + " has been created!");
             sender.sendMessage(Core.getInstance().getProperties().getPluginsPrefix() + ChatColor.GREEN + "Now set the spawn location using " +ChatColor.RED + "/ep setspawn " + mapName);
+            if(Core.board.getObjective(mapName) == null) {
+                Objective map = Core.board.registerNewObjective(mapName,"dummy", mapName + " High Scores");
+            }
         }else{
             sender.sendMessage(Core.getInstance().getProperties().getPluginsPrefix() + ChatColor.RED + "This map already exists!");
         }

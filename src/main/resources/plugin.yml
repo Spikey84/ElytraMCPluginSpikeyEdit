@@ -1,0 +1,15 @@
+name: ElytraParkourSpikeyEdit
+version: 1.0
+main: me.jet315.elytraparkour.Core
+softdepend: [Multiverse,Multiworld,Multiverse-Core,PlaceholderAPI]
+api-version: 1.13
+commands:
+  particles:
+    description: Particle toggle.
+    permission: elytra.particles
+  elytraparkour:
+    description: The base command for the ElytraParkour plugin
+    aliases: [ep,elytra]
+  boost:
+    description: Boost toggle.
+    permission: elytra.boost

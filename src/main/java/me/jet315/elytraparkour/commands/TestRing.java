@@ -34,33 +34,35 @@ public class TestRing extends CommandExecutor{
         Player p = (Player) sender;
         ArrayList<Location> locations = ParticleUtils.generateCircleLocations((p).getLocation(),radius,Core.getInstance().getProperties().getNumberOfParticlesToSpawnPerRing());
 
+        final ArrayList<Location> locs = locations;
+        final Player player = p;
         new BukkitRunnable() {
             int i = 4;
 
             public void run() {
                 if(i == 4){
-                    for(Location loc : locations){
-                        p.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
+                    for(Location loc : locs){
+                        player.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
                     }
                 }
                 if(i == 3){
-                    for(Location loc : locations){
-                        p.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
+                    for(Location loc : locs){
+                        player.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
                     }
                 }
                 if(i == 2){
-                    for(Location loc : locations){
-                        p.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
+                    for(Location loc : locs){
+                        player.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
                     }
                 }
                 if(i == 1){
-                    for(Location loc : locations){
-                        p.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
+                    for(Location loc : locs){
+                        player.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
                     }
                 }
                 if (i == 0) {
-                    for(Location loc : locations){
-                        p.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
+                    for(Location loc : locs){
+                        player.spawnParticle(Core.getInstance().getProperties().getTestingRingParticle(),loc,1,0,0,0,0,null);
                     }
                     cancel();
                 }

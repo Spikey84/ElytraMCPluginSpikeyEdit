@@ -1,6 +1,8 @@
 package me.jet315.elytraparkour;
 
+import me.jet315.elytraparkour.commands.Boost;
 import me.jet315.elytraparkour.commands.CommandHandler;
+import me.jet315.elytraparkour.commands.Particles;
 import me.jet315.elytraparkour.listeners.GlideMoveEvent;
 import me.jet315.elytraparkour.listeners.GlideToggleEvent;
 import me.jet315.elytraparkour.listeners.JoinEvent;
@@ -11,14 +13,17 @@ import me.jet315.elytraparkour.manager.ParticleManager;
 import me.jet315.elytraparkour.utils.ParticleUtils;
 import me.jet315.elytraparkour.utils.Properties;
 import org.bukkit.Bukkit;
+import org.bukkit.GameRule;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
 
 import java.io.File;
+import java.util.HashMap;
 
 public class Core extends JavaPlugin {
 
@@ -26,6 +31,13 @@ public class Core extends JavaPlugin {
      * Stores plugins instance
      */
     private static Core instance;
+
+    public static Boolean particles = false;
+    public static Boolean boost = false;
+    public static Scoreboard board;
+    public static int counterSeconds;
+    public static int counterId;
+    public static HashMap<Player, Integer> startTime = new HashMap<Player, Integer>();
 
     /**
      * Stores the configuration data
@@ -43,12 +55,15 @@ public class Core extends JavaPlugin {
     private ParticleManager particleManager;
 
     public void onEnable(){
+        board = Bukkit.getScoreboardManager().getMainScoreboard();
         instance = this;
         properties = new Properties(this);
         elytraManager = new ElytraManager(this);
         particleManager = new ParticleManager(this);
 
         getCommand("elytraparkour").setExecutor(new CommandHandler());
+        getCommand("particles").setExecutor(new Particles());
+        getCommand("boost").setExecutor(new Boost());
 
         Bukkit.getPluginManager().registerEvents(new GlideMoveEvent(),this);
         Bukkit.getPluginManager().registerEvents(new GlideToggleEvent(),this);
@@ -58,6 +73,14 @@ public class Core extends JavaPlugin {
         for(Player p : Bukkit.getOnlinePlayers()){
             Core.getInstance().getElytraManager().getElytraPlayers().put(p,new ElytraPlayer(p));
         }
+
+        counterId = Bukkit.getScheduler().scheduleSyncRepeatingTask(instance, new Runnable() {
+            public void run() {
+
+                counterSeconds++;
+
+            }
+        }, 0,20);
     }
 
 

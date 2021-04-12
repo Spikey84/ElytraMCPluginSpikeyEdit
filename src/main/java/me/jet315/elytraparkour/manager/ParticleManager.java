@@ -29,7 +29,6 @@ public class ParticleManager {
     //TODO: Currently quite server heavy.. Need to spread out spawning particle effects across multiple ticks
     public void spawnFirstRings() {
         Bukkit.getServer().getScheduler().runTaskTimer(instance, new Runnable() {
-            @Override
             public void run() {
                 HashMap<World, Boolean> needToSpawnFirstRing = new HashMap<World, Boolean>();
 
@@ -37,7 +36,9 @@ public class ParticleManager {
                     if(!map.isComplete()){
                         for(Ring ring : map.getMapRings().values()){
                             for (Location l : ring.getDiameterOfRing()) {
-                                l.getWorld().spawnParticle(ring.getParticleType(), l,1,0,0,0,0,null);
+                                if(Core.particles) {
+                                    l.getWorld().spawnParticle(ring.getParticleType(), l, 1, 0, 0, 0, 0, null);
+                                }
                             }
                         }
                         continue;
@@ -71,7 +72,9 @@ public class ParticleManager {
                     //First rings need to be spawned
 
                     for (Location l : map.getStartingRing().getDiameterOfRing()) {
-                        world.spawnParticle(properties.getFirstRingParticles(), l,1,0,0,0,0,null);
+                        if(Core.particles) {
+                            world.spawnParticle(properties.getFirstRingParticles(), l, 1, 0, 0, 0, 0, null);
+                        }
                     }
                     //Check if any more rings need to be spawned
                     if (properties.getAdditionalSpawnRings() != 0) {
@@ -80,11 +83,15 @@ public class ParticleManager {
                             if (ring != null) {
                                 if (ring.getRingType() == RingType.LAST) {
                                     for (Location l : ring.getDiameterOfRing()) {
-                                        world.spawnParticle(ring.getParticleType(), l,1,0,0,0,0,null);
+                                        if(Core.particles) {
+                                            world.spawnParticle(ring.getParticleType(), l, 1, 0, 0, 0, 0, null);
+                                        }
                                     }
                                 } else {
                                     for (Location l : ring.getDiameterOfRing()) {
-                                        world.spawnParticle(ring.getParticleType(), l,1,0,0,0,0,null);
+                                        if(Core.particles) {
+                                            world.spawnParticle(ring.getParticleType(), l, 1, 0, 0, 0, 0, null);
+                                        }
                                     }
                                 }
                             }
@@ -102,10 +109,9 @@ public class ParticleManager {
         final int spawnRings = properties.getAdditionalSpawnRings();
 
             Bukkit.getServer().getScheduler().runTaskTimer(instance, new Runnable() {
-                @Override
                 public void run() {
                     //Stores already spawned in rings (Map object, followed by the ring number)
-                    HashMap<ElytraMap,Integer> spawnedInRings = new HashMap<>();
+                    HashMap<ElytraMap,Integer> spawnedInRings = new HashMap<ElytraMap,Integer>();
 
                     for(Player p : elytraManager.getElytraPlayers().keySet()){
                         if(p.isGliding() && elytraManager.getElytraPlayers().get(p).isInMap()){
@@ -132,7 +138,9 @@ public class ParticleManager {
                                     if(ring != null){
 
                                             for (Location l : ring.getDiameterOfRing()) {
-                                                l.getWorld().spawnParticle(ring.getParticleType(), l,1,0,0,0,0,null);
+                                                if(Core.particles) {
+                                                    l.getWorld().spawnParticle(ring.getParticleType(), l, 1, 0, 0, 0, 0, null);
+                                                }
                                             }
 
                                         }
